@@ -34,6 +34,7 @@ retriever = vectorstore.as_retriever(
 # -------------------------
 # LLM (MISTRAL)
 # -------------------------
+
 llm = ChatMistralAI(
     model="mistral-small-latest",
     temperature=0.3
