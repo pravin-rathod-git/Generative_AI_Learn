@@ -8,6 +8,7 @@ from rag_core import process_query
 
 app = FastAPI()
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
