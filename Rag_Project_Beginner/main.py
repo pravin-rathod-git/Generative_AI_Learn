@@ -43,6 +43,7 @@ llm = ChatMistralAI(
 # -------------------------
 # PROMPT
 # -------------------------
+
 prompt = ChatPromptTemplate.from_messages(
     [
         (
