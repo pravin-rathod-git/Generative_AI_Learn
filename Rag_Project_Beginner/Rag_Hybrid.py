@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_mistralai import ChatMistralAI
 from langchain_community.vectorstores import Chroma
@@ -35,7 +36,6 @@ retriever = vectorstore.as_retriever(
 # -------------------------
 # LLM (MISTRAL + STREAMING)
 # -------------------------
-
 llm = ChatMistralAI(
     model="mistral-small-latest",
     temperature=0.3,
@@ -51,16 +51,11 @@ chat_history = []
 # -------------------------
 # PROMPT
 # -------------------------
-
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", """You are a helpful AI assistant.
-
-1. If the answer exists in the context, answer ONLY using it.
-2. If the answer is not in the context, answer using your general knowledge.
-3. Mention when you are using general knowledge.
-
-Be clear and helpful.
+Use ONLY the provided context.
+If not found, say "I could not find the answer."
 """),
         ("human", """Chat History:
 {history}
@@ -80,7 +75,6 @@ print("Press 0 to exit")
 # -------------------------
 # QUERY LOOP
 # -------------------------
-
 while True:
     query = input("\nYou: ")
 
@@ -102,4 +96,8 @@ while True:
 
     response = llm.invoke(final_prompt)
 
-    print(f"\nAI: {response.content}")
+    answer = response.content
+
+    # Save memory
+    chat_history.append(f"You: {query}")
+    chat_history.append(f"AI: {answer}")
