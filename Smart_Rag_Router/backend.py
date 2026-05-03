@@ -24,6 +24,7 @@ class QueryRequest(BaseModel):
 def home():
     return {"message": "Backend running"}
 
+
 @app.post("/chat")
 def chat(req: QueryRequest):
     answer, route = process_query(req.query)
