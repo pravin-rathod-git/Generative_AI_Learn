@@ -1,6 +1,5 @@
 import os
 from dotenv import load_dotenv
-
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_mistralai import ChatMistralAI
 from langchain_community.vectorstores import Chroma
