@@ -2,6 +2,7 @@
 
 from rag_core import process_query
 
+
 while True:
     q = input("You: ")
     if q == "0":
