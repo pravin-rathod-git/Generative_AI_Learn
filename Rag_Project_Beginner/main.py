@@ -74,6 +74,7 @@ print("Press 0 to exit")
 # -------------------------
 # QUERY LOOP
 # -------------------------
+
 while True:
     query = input("\nYou: ")
 
